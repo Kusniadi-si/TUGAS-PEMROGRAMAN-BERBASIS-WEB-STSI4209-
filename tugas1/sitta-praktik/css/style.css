@@ -1,0 +1,1067 @@
+/* --- VARIABLE GLOBAL --- */
+:root {
+    --ut-blue: #003366;
+    --ut-yellow: #ffcc00;
+    --ut-light-blue: #00a2e8;
+    --dash-sidebar-width: 320px;
+    --dash-hover-bg: rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================
+   STYLE HALAMAN LOGIN (PREFIX: login-)
+   ========================================== */
+.login-page {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: var(--ut-blue);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 380px;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.login-logo-ut {
+    width: 140px;
+    margin-bottom: 15px;
+}
+
+.login-title-sitta {
+    color: var(--ut-blue);
+    font-size: 40px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.login-subtitle-sitta {
+    color: var(--ut-blue);
+    font-size: 14px;
+    font-weight: 600;
+    margin: 5px 0 30px 0;
+}
+
+.login-input-group {
+    position: relative;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0 12px;
+    background: #fff;
+    transition: border-color 0.3s;
+}
+
+.login-input-group:focus-within {
+    border-color: var(--ut-light-blue);
+}
+
+.login-input-icon {
+    color: #aaa;
+    font-size: 18px;
+    width: 30px;
+    text-align: center;
+}
+
+.login-input-group input {
+    flex: 1;
+    border: none;
+    padding: 12px;
+    font-size: 15px;
+    outline: none;
+    border-radius: 8px;
+}
+
+.login-action-row {
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.login-link-text {
+    color: var(--ut-light-blue);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 0;
+}
+
+.login-btn-submit {
+    background-color: var(--ut-yellow);
+    color: var(--ut-blue);
+    border: none;
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.login-btn-submit:hover {
+    background-color: #e6b800;
+}
+
+.login-footer-text {
+    margin-top: 25px; 
+    font-size: 14px; 
+    color: #888;
+}
+
+.login-modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.login-modal-content {
+    background: white;
+    margin: 15% auto;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 320px;
+    text-align: center;
+}
+
+#login-modal-title {
+    color: var(--ut-blue); 
+    margin-top: 0; 
+    font-weight: 800;
+}
+
+.login-modal-content p {
+    color: #666; 
+    font-size: 14px; 
+    line-height: 1.5;
+}
+
+.login-btn-ok {
+    background: var(--ut-blue);
+    color: white;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* ==========================================
+   STYLE HALAMAN DASHBOARD (PREFIX: dash-)
+   ========================================== */
+.dash-body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    margin: 0;
+    display: flex;
+    background-color: #f0f2f5;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.dash-sidebar {
+    width: var(--dash-sidebar-width);
+    background-color: var(--ut-blue);
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    box-sizing: border-box;
+    color: white;
+    z-index: 100;
+}
+
+.dash-sidebar-header {
+    text-align: center;
+    padding: 0 20px 20px 20px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.dash-sidebar-header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 15%;
+    width: 70%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.dash-logo-ut {
+    width: 60px;
+    margin-bottom: 10px;
+}
+
+.dash-brand-title {
+    color: var(--ut-yellow);
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.dash-menu-list {
+    list-style: none;
+    padding: 0 10px;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.dash-menu-item,
+.dash-drop-btn {
+    display: flex;
+    align-items: center;
+    padding: 14px 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.dash-menu-item i:first-child,
+.dash-drop-btn i:first-child {
+    margin-right: 15px;
+    width: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.dash-arrow-icon {
+    margin-left: auto;
+    transition: transform 0.3s;
+    font-size: 12px;
+}
+
+.dash-rotate {
+    transform: rotate(180deg);
+}
+
+.dash-active-menu {
+    color: var(--ut-yellow) !important;
+    background-color: transparent !important;
+}
+
+.dash-menu-item:hover,
+.dash-drop-btn:hover {
+    background-color: var(--dash-hover-bg);
+    color: var(--ut-yellow);
+}
+
+.dash-dropdown-container {
+    display: none;
+    margin: 5px 0;
+}
+
+.dash-dropdown-container a {
+    padding: 12px 15px 12px 65px;
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
+    white-space: nowrap;
+}
+
+.dash-dropdown-container a i {
+    margin-right: 10px;
+    font-size: 10px;
+}
+
+.dash-dropdown-container a:hover {
+    background-color: var(--dash-hover-bg);
+    color: var(--ut-yellow);
+}
+
+.dash-show {
+    display: block;
+}
+
+.dash-logout-section {
+    padding: 15px;
+    position: relative;
+}
+
+.dash-logout-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 15%;
+    width: 70%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.dash-logout-btn {
+    color: #ff6b6b;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    padding: 12px 25px;
+    transition: color 0.3s;
+    border-radius: 10px;
+}
+
+.dash-logout-btn:hover {
+    color: #ff0000;
+}
+
+.dash-logout-btn i {
+    margin-right: 15px;
+    width: 20px;
+    text-align: center;
+}
+
+.dash-main-content {
+    margin-left: var(--dash-sidebar-width);
+    width: calc(100% - var(--dash-sidebar-width));
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.dash-main-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.dash-welcome-box {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-left: 8px solid var(--ut-yellow);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+}
+
+.dash-welcome-text h2 {
+    margin: 0;
+    color: #888;
+    font-size: 18px;
+}
+
+.dash-welcome-text h1 {
+    margin: 5px 0;
+    color: var(--ut-blue);
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.dash-welcome-text p {
+    margin: 0;
+    color: #555;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.dash-current-date {
+    font-weight: 700;
+    color: var(--ut-blue);
+    font-size: 15px;
+}
+
+.dash-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.dash-simple-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-decoration: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    border: 1px solid #eee;
+    transition: border-color 0.3s, transform 0.3s;
+}
+
+.dash-card-symbol {
+    align-self: center;
+    background: #f0f4f8;
+    color: var(--ut-blue);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 24px;
+    margin-bottom: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dash-simple-card:hover .dash-card-symbol {
+    background: var(--ut-yellow);
+    color: var(--ut-blue);
+}
+
+.dash-simple-card:hover {
+    border-color: var(--ut-yellow);
+    transform: translateY(-3px);
+}
+
+.dash-simple-card h3 {
+    align-self: center;
+    margin: 0;
+    color: var(--ut-blue);
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.dash-simple-card p {
+    text-align: left;
+    margin: 10px 0 0;
+    color: #777;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   STYLE HALAMAN STOK (PREFIX: stok-)
+   ========================================== */
+.stok-header-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.stok-header-action h2 {
+    color: var(--ut-blue);
+    margin: 0;
+    font-weight: 800;
+}
+
+.stok-btn-add-trigger {
+    background: var(--ut-blue);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.stok-table-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.stok-table-card table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.stok-table-card th {
+    text-align: left;
+    padding: 15px;
+    background: #f0f4f8;
+    color: var(--ut-blue);
+    border-bottom: 2px solid #dee2e6;
+}
+
+.stok-table-card td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    color: #444;
+    font-size: 14px;
+}
+
+.stok-table-card .cover-img {
+    width: 80px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+/* --- MODAL FORM STOK --- */
+.stok-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.stok-modal-content {
+    background: white;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+}
+
+.stok-back-nav-fa {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #5dade2;
+    cursor: pointer;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s;
+}
+
+.stok-field-group {
+    margin-bottom: 15px;
+}
+
+.stok-field-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.stok-field-group input {
+    width: 100%;
+    padding: 12px;
+    background: #f5f6f7;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.stok-modal-btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    height: 48px;
+}
+
+.stok-btn-modal {
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.stok-btn-modal-save {
+    background: var(--ut-blue);
+    color: white;
+    flex: 2;
+}
+
+.stok-btn-modal-delete {
+    background: #ff6b6b;
+    color: white;
+    flex: 1;
+}
+
+/* --- NOTIFIKASI STOK --- */
+.stok-alert-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.stok-alert-box {
+    background: #222;
+    color: white;
+    width: 300px;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.stok-btn-ok {
+    background: #cce4ff;
+    color: #003366;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* ==========================================
+   STYLE HALAMAN TRACKING (PREFIX: track-)
+   ========================================== */
+.track-main-content {
+    margin-left: var(--dash-sidebar-width);
+    width: calc(100% - var(--dash-sidebar-width));
+    padding: 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.track-search-container {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.track-input-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.track-input-box label {
+    font-weight: 700;
+    color: #444;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.track-input-box input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+}
+
+.track-btn-lacak {
+    background: var(--ut-yellow);
+    color: #333;
+    border: none;
+    padding: 12px 60px;
+    border-radius: 25px;
+    font-weight: 800;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#track-resultArea {
+    width: 100%;
+    max-width: 650px;
+    display: none;
+}
+
+.track-blue-card {
+    background: #3b5998;
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.track-blue-card h2 { margin: 0; font-size: 20px; font-weight: 700; text-transform: uppercase; }
+.track-do-num { font-size: 18px; margin-top: 5px; display: block; font-weight: 600; }
+.track-details-info { margin-top: 25px; font-weight: 700; font-size: 14px; }
+.track-sub-detail { font-size: 13px; margin-top: 5px; opacity: 0.9; }
+.track-timestamp-box { position: absolute; top: 30px; right: 30px; text-align: right; font-size: 13px; font-weight: 600; }
+
+.track-timeline-title { font-weight: 800; font-size: 18px; color: #333; margin-bottom: 30px; width: 100%; }
+.track-timeline-wrapper { position: relative; margin-left: 10px; width: 100%; }
+
+.track-timeline-item {
+    position: relative;
+    padding-left: 45px;
+    padding-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.track-timeline-item::before {
+    content: ""; position: absolute; left: -5.5px; top: 5px; width: 13px; height: 13px;
+    background: var(--ut-yellow); border-radius: 50%; z-index: 2;
+}
+
+.track-timeline-item::after {
+    content: ""; position: absolute; left: 0; top: 5px; height: 100%;
+    border-left: 2px solid #ccc; z-index: 1;
+}
+
+.track-timeline-item:last-child::after { display: none; }
+
+.track-status-main { font-weight: 700; color: #333; font-size: 14px; margin: 0; }
+.track-status-sub { color: #888; font-size: 12px; margin-top: 5px; display: block; font-weight: 600; }
+.track-status-time { color: #555; font-size: 13px; text-align: right; min-width: 170px; font-weight: 600; }
+
+/* ==========================================
+   STYLE MODAL ALERT KUSTOM (TRUE CENTER)
+   ========================================== */
+#login-custom-alert {
+    display: none;
+    position: fixed;
+    z-index: 9999; /* Berada di atas semua elemen layar */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#login-custom-alert .login-modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Penyelarasan presisi as tengah */
+    background: #ffffff;
+    width: 90%;
+    max-width: 320px;
+    padding: 35px 25px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    margin: 0 !important; /* Mencegah bentrokan margin luar */
+    animation: fadeInModal 0.3s ease-out;
+}
+
+@keyframes fadeInModal {
+    from { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+    to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+.login-alert-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.login-alert-title {
+    margin: 0 0 10px 0;
+    font-size: 22px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.login-alert-message {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.icon-success { color: #2ecc71; }
+.icon-error { color: #e74c3c; }
+
+#login-alert-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 15px;
+    transition: background-color 0.2s;
+}
+
+/* --- KELAS BARU UNTUK MENGGANTIKAN CSS INLINE --- */
+.btn-clean-trigger {
+    background: none;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
+}
+
+.stok-modal-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.stok-modal-header h3 {
+    margin: 0;
+}
+
+.stok-field-row {
+    display: flex;
+    gap: 10px;
+}
+
+.col-half {
+    flex: 1;
+}
+
+/* --- PENGATURAN MATA BERBULU FONT AWESOME 7 --- */
+.login-eye-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-size: 16px;
+    
+    /* Mengunci dimensi tombol agar bentuk ikon tegak lurus & stabil */
+    width: 30px;
+    min-width: 30px;
+    height: 100%;
+    transition: color 0.2s ease;
+}
+
+.login-eye-btn:hover {
+    color: var(--ut-light-blue);
+}
+
+/* BLOKIR TOTAL MATA BAWAAN EDGE BIAR TIDAK DOBEL ATAU BERBENTURAN */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear,
+#login-password::-ms-reveal {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* KONDISI AWAL: Sembunyikan mata berbulu kita jika kolom password KOSONG */
+#login-password:placeholder-shown ~ #login-toggle-password {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
+}
+
+/* KONDISI AKTIF: Munculkan mata berbulu secara halus saat MULAI MENGETIK */
+#login-password:not(:placeholder-shown) ~ #login-toggle-password {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+}
+
+/* ==========================================
+   FITUR ANIMASI SIDEBAR MELUNCUR PREMIUM (FIX)
+   ========================================== */
+.dash-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0; /* Kondisi awal: Menempel di ujung kiri monitor */
+    height: 100vh;
+    z-index: 10000;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transisi dipindah ke properti left */
+}
+
+.dash-main-content, 
+.track-main-content {
+    margin-left: var(--dash-sidebar-width);
+    width: calc(100% - var(--dash-sidebar-width));
+    position: relative;
+    z-index: 1;
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- TOMBOL PANAH DI DALAM SIDEBAR --- */
+.dash-sidebar-slide-btn {
+    position: absolute;
+    top: 20px;
+    right: 15px; 
+    width: 32px;
+    height: 32px;
+    background-color: rgba(255, 255, 255, 0.1); 
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    z-index: 110;
+    transition: all 0.2s ease;
+}
+
+/* --- HOVER UNIVERSAL (Selalu Kuning) --- */
+.dash-sidebar-slide-btn:hover,
+.sidebar-hidden .dash-sidebar-slide-btn:hover {
+    background-color: var(--ut-yellow) !important;
+    color: var(--ut-blue) !important;
+    border-color: var(--ut-yellow) !important;
+}
+
+/* --- KONDISI SAAT SIDEBAR DISEMBUNYIKAN --- */
+.sidebar-hidden .dash-sidebar {
+    left: calc(var(--dash-sidebar-width) * -1) !important;
+}
+
+.sidebar-hidden .dash-sidebar-slide-btn {
+    position: fixed !important;
+    left: 10px !important; 
+    right: auto !important;
+    top: 20px;
+    background-color: var(--ut-blue); /* Warna dasar saat tertutup */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 999999 !important;
+}
+
+/* --- KONTEN UTAMA: PENYESUAIAN LEBAR OTOMATIS --- */
+.dash-main-content, 
+.track-main-content {
+    margin-left: var(--dash-sidebar-width);
+    width: calc(100% - var(--dash-sidebar-width));
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box; 
+}
+
+/* --- KONDISI SAAT SIDEBAR TERTUTUP (PASTI PENUH 100%) --- */
+.sidebar-hidden .dash-main-content,
+.sidebar-hidden .track-main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+}
+
+/* ==========================================
+   RESPONSIF SEMUA PERANGKAT (MOBILE READY)
+   ========================================== */
+
+/* 1. Pengaturan untuk Tablet & Handphone (Lebar layar di bawah 1024px) */
+@media screen and (max-width: 1024px) {
+    :root {
+        --dash-sidebar-width: 280px; /* Sidebar sedikit lebih ramping di tablet */
+    }
+
+    /* Sidebar otomatis sembunyi di awal pada layar kecil */
+    .dash-sidebar {
+        left: calc(var(--dash-sidebar-width) * -1);
+        z-index: 999999;
+    }
+
+    /* Konten utama mengambil lebar penuh */
+    .dash-main-content, 
+    .track-main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 20px; /* Padding lebih kecil agar hemat ruang */
+    }
+
+    /* Tombol toggle dipaksa muncul di pojok kiri */
+    .dash-sidebar-slide-btn {
+        position: fixed !important;
+        left: 10px !important;
+        right: auto !important;
+        background-color: var(--ut-blue) !important;
+    }
+
+    /* Saat sidebar dibuka di mobile (overlay) */
+    body:not(.sidebar-hidden) .dash-sidebar {
+        left: 0 !important;
+        box-shadow: 10px 0 30px rgba(0,0,0,0.3);
+    }
+
+    /* Penyesuaian Grid Kartu Dashboard */
+    .dash-card-grid {
+        grid-template-columns: 1fr; /* Kartu jadi satu baris memanjang ke bawah */
+    }
+
+    /* Penyesuaian Box Selamat Datang */
+    .dash-welcome-box {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    /* Tabel Stok agar bisa di-scroll ke samping di HP */
+    .stok-table-card {
+        overflow-x: auto;
+        padding: 10px;
+    }
+
+    .stok-table-card table {
+        min-width: 600px; /* Memaksa tabel punya lebar minimum agar tidak gepeng */
+    }
+}
+
+/* 2. Pengaturan khusus Handphone Kecil (Lebar layar di bawah 480px) */
+@media screen and (max-width: 480px) {
+    .login-card {
+        max-width: 90%;
+        padding: 25px;
+    }
+
+    .dash-welcome-text h1 {
+        font-size: 24px;
+    }
+
+    .stok-header-action {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .stok-btn-add-trigger {
+        width: 100%;
+    }
+
+    .stok-modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    .stok-field-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}

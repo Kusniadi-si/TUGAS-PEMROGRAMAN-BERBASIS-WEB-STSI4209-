@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Pengiriman | SITTA UT</title>
+    <!-- Font Awesome CDN Stabil -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <!-- File CSS Terpadu -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dash-body">
+
+    <!-- Navigasi Utama (Sidebar) -->
+    <aside class="dash-sidebar">
+        <header class="dash-sidebar-header">
+            <img src="assets/logo-ut.png" alt="Logo UT" class="dash-logo-ut">
+            <div class="dash-brand-title">SITTA UT</div>
+        </header>
+        <nav class="dash-menu-list">
+            <a href="dashboard.html" class="dash-menu-item"><i class="fa-solid fa-house"></i> Beranda</a>
+            <a href="stok.html" class="dash-menu-item"><i class="fa-solid fa-boxes-stacked"></i> Informasi Bahan Ajar</a>
+            <a href="tracking.html" class="dash-menu-item dash-active-menu"><i class="fa-solid fa-truck-fast"></i> Tracking Pengiriman</a>
+            
+            <!-- Dropdown Kontrol Laporan -->
+            <button type="button" class="dash-drop-btn" onclick="dashToggleDrop()">
+                <i class="fa-solid fa-file-signature"></i> Laporan 
+                <i class="fa-solid fa-chevron-down dash-arrow-icon" id="dash-arrow"></i>
+            </button>
+            <div id="dash-dropMenu" class="dash-dropdown-container">
+                <a href="#"><i class="fa-solid fa-circle-dot"></i> Monitoring DO</a>
+                <a href="#"><i class="fa-solid fa-circle-dot"></i> Rekapitulasi</a>
+            </div>
+            
+            <a href="#" class="dash-menu-item"><i class="fa-solid fa-clock-rotate-left"></i> Histori Transaksi Bahan Ajar</a>
+        </nav>
+        <footer class="dash-logout-section">
+            <button type="button" onclick="logoutSitta()" class="dash-logout-btn" style="background: none; border: none; width: 100%; cursor: pointer; text-align: left;">
+                <i class="fa-solid fa-power-off"></i> Keluar
+            </button>
+        </footer>
+        <button type="button" id="dash-sidebar-toggle" class="dash-sidebar-slide-btn" onclick="dashToggleSidebar()">
+        <i class="fa-solid fa-angles-left" id="dash-toggle-icon"></i>
+    </button>
+    </aside>
+
+    <!-- Konten Utama (Form Lacak & Hasil Timeline) -->
+    <main class="track-main-content">
+        <section class="track-search-container">
+            <div class="track-input-box">
+                <label for="track-noDO">No. DO/Billing</label>
+                <input type="text" id="track-noDO" placeholder="Masukkan nomor DO...">
+            </div>
+            <button type="button" class="track-btn-lacak" onclick="trackLacakPaket()">LACAK</button>
+        </section>
+
+        <!-- Area Hasil Pelacakan Pengiriman -->
+        <section id="track-resultArea">
+            <header class="track-blue-card">
+                <h2 id="track-nama-user">-</h2>
+                <span class="track-do-num" id="track-do-val">-</span>
+                <div class="track-details-info" id="track-status-ekspedisi">-</div>
+                <div class="track-sub-detail" id="track-paket-info">-</div>
+                <div class="track-timestamp-box">
+                    <span id="track-date-val">-</span>
+                </div>
+            </header>
+
+            <h3 class="track-timeline-title">Perjalanan Paket</h3>
+            <div class="track-timeline-wrapper" id="track-timelineList"></div>
+        </section>
+    </main>
+
+    <!-- Skrip Integrasi Basis Data dan Logika Sistem -->
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SITTA - Sistem Pemesanan Bahan Ajar UT (Vue 3)</title>
+    <!-- Menghubungkan ke file CSS dengan tema warna UT -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Mengambil font Poppins dari Google Fonts -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Memuat Library Vue 3 via CDN Global Build -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+
+    <!-- Header Resmi Universitas Terbuka -->
+    <header class="ut-header">
+        <div class="ut-header-container">
+            <div class="ut-logo-section">
+                <!-- Memanfaatkan file logo-ut.png di dalam folder assets -->
+                <img src="assets/logo-ut.png" alt="Logo Universitas Terbuka" class="ut-logo">
+                <div class="ut-title-section">
+                    <h1>SITTA UT</h1>
+                    <p>Sistem Informasi Tiras dan Transaksi Bahan Ajar</p>
+                </div>
+            </div>
+            <div class="ut-academic-year">
+                <span>Tahun Akademik: 2025/2026</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigasi Menu Utama dengan Desain Tombol Berjarak Rapi -->
+    <nav class="ut-navbar">
+        <div class="ut-nav-container">
+            <a href="index.html" class="nav-item active">Beranda</a>
+            <a href="stok.html" class="nav-item">Stok Bahan Ajar</a>
+            <a href="tracking.html" class="nav-item">Tracking Delivery Order</a>
+        </div>
+    </nav>
+    <!-- Konten Utama Halaman Beranda -->
+    <main class="ut-container">
+        <!-- Banner Selamat Datang -->
+        <section class="ut-welcome-banner">
+            <h2>Selamat Datang di Aplikasi SITTA UT</h2>
+            <p>Sistem integrasi untuk kebutuhan pengelolaan proses pemesanan dan distribusi bahan ajar di lingkungan Universitas Terbuka berbasis Vue 3 Framework.</p>
+        </section>
+
+        <!-- Kartu Navigasi Fitur Utama -->
+        <section class="ut-dashboard-grid">
+            <!-- Kartu Menuju Halaman Stok -->
+            <div class="ut-card">
+                <div class="ut-card-icon">📚</div>
+                <h3>Stok Bahan Ajar</h3>
+                <p>Kelola daftar inventaris buku, pantau limit status keselamatan stok (safety stock), serta lakukan re-order bahan ajar untuk seluruh UT Daerah secara real-time.</p>
+                <a href="stok.html" class="ut-btn">Buka Manajemen Stok</a>
+            </div>
+
+            <!-- Kartu Menuju Halaman Tracking -->
+            <div class="ut-card">
+                <div class="ut-card-icon">🚚</div>
+                <h3>Tracking Delivery Order</h3>
+                <p>Lacak pengiriman paket bahan ajar mahasiswa, buat input order baru, otomatisasi nomor DO, serta pantau riwayat log perjalanan ekspedisi.</p>
+                <a href="tracking.html" class="ut-btn">Buka Tracking DO</a>
+            </div>
+        </section>
+
+        <!-- Informasi Panduan Sistem -->
+        <section class="ut-info-section">
+            <h3>Panduan Singkat Penggunaan Aplikasi</h3>
+            <ul class="ut-guide-list">
+                <li>Gunakan menu <strong>Stok Bahan Ajar</strong> jika ingin memperbarui sisa buku di rak atau menyaring buku yang kritis/habis.</li>
+                <li>Gunakan menu <strong>Tracking Delivery Order</strong> untuk mendaftarkan resi distribusi pengiriman modul kuliah berdasarkan NIM mahasiswa.</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Footer Resmi Universitas Terbuka -->
+    <footer class="ut-footer">
+        <div class="ut-footer-container">
+            <p>&copy; 2026 Universitas Terbuka. Seluruh Hak Cipta Dilindungi Undang-Undang.</p>
+            <p class="ut-footer-sub">Tugas Praktik 2 - Pemrograman Berbasis Web (STSI4209) - Vue 3 Framework</p>
+        </div>
+    </footer>
+
+</body>
+</html>

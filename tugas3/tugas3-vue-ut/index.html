@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SITTA UT - Sistem Informasi Tiras & Distribusi Bahan Ajar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <!-- Top Navbar Modern ala UT -->
+        <header class="navbar">
+            <div class="nav-brand">
+                <img src="assets/img/logo-ut.png" alt="Logo UT" class="brand-logo-img">
+                <div class="brand-text">
+                    <h1>SITTA UT</h1>
+                    <small>Sistem Informasi Tiras & Transaksi Bahan Ajar</small>
+                </div>
+            </div>
+            <div class="user-profile">
+                <div class="user-info">
+                    <span class="user-name">Kusniadi051097817</span>
+                    <span class="user-role"><i class="fa-solid fa-circle text-success animate-pulse"></i>
+                        Administrator</span>
+                </div>
+                <i class="fa-solid fa-circle-user avatar-icon"></i>
+            </div>
+        </header>
+
+        <!-- Main Workspace Layout -->
+        <div class="main-container" :class="{ 'sidebar-collapsed-layout': isSidebarCollapsed }">
+            <!-- Sidebar Panel Kiri -->
+            <aside class="sidebar" :class="{ 'collapsed': isSidebarCollapsed }">
+                <div class="sidebar-header-row">
+                    <span class="sidebar-title" v-if="!isSidebarCollapsed"><i class="fa-solid fa-bars-staggered"></i>
+                        MENU UTAMA</span>
+                    <button type="button" class="btn-sidebar-toggle" @click="toggleSidebar"
+                        :title="isSidebarCollapsed ? 'Buka Sidebar' : 'Sembunyikan Sidebar'">
+                        <i :class="isSidebarCollapsed ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left'"></i>
+                    </button>
+                </div>
+                <nav class="nav-menu">
+                    <button type="button" :class="{ active: currentTab === 'beranda' }"
+                        @click="handleMenuClick('beranda')" title="Beranda">
+                        <i class="fa-solid fa-house-chimney"></i><span v-if="!isSidebarCollapsed">Beranda</span>
+                    </button>
+                    <button type="button" :class="{ active: currentTab === 'stok' }" @click="handleMenuClick('stok')"
+                        title="Stok Bahan Ajar">
+                        <i class="fa-solid fa-boxes-stacked"></i><span v-if="!isSidebarCollapsed">Stok Bahan Ajar</span>
+                    </button>
+                    <button type="button" :class="{ active: currentTab === 'tracking' }"
+                        @click="handleMenuClick('tracking')" title="Tracking DO">
+                        <i class="fa-solid fa-map-location-dot"></i><span v-if="!isSidebarCollapsed">Tracking DO</span>
+                    </button>
+                </nav>
+                <div class="sidebar-footer" v-if="!isSidebarCollapsed">
+                    <p>&copy; 2026 Universitas Terbuka</p>
+                </div>
+            </aside>
+
+            <!-- Konten Utama Dinamis -->
+            <main class="content-area">
+                <div v-if="isLoading" class="app-loader">
+                    <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+                    <p>Sinkronisasi Basis Data Dummy SITTA...</p>
+                </div>
+                <div v-else>
+                    <!-- Tab 1: Dashboard Utama -->
+                    <section v-if="currentTab === 'beranda'" class="fade-in dashboard-hero">
+                        <div class="welcome-box">
+                            <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Dashboard Utama</h2>
+                            <p>Selamat datang di platform tata kelola logistik internal SITTA.</p>
+                            <p class="mt-2 text-muted">Sistem manajemen perorganisasian sirkulasi buku materi pokok,
+                                inventarisasi digital raksasa, serta pemantauan data jalur pengiriman bahan ajar
+                                mahasiswa Universitas Terbuka secara waktu nyata.</p>
+                        </div>
+                        <div class="stat-cards-grid">
+                            <div class="stat-card card-blue">
+                                <i class="fa-solid fa-book"></i>
+                                <div class="stat-info">
+                                    <h3>{{ state.stockList.length }}</h3>
+                                    <p>Jumlah Buku</p>
+                                </div>
+                            </div>
+                            <div class="stat-card card-red-alert">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                <div class="stat-info">
+                                    <h3>{{ state.stockList.filter(i => i.qty === 0 || i.qty < i.safety).length }}</h3>
+                                            <p>Stok Buku Menipis/Kosong</p>
+                                </div>
+                            </div>
+                            <div class="stat-card card-orange">
+                                <i class="fa-solid fa-truck-ramp-box"></i>
+                                <div class="stat-info">
+                                    <h3>{{ state.trackingList.length }}</h3>
+                                    <p>Data DO</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Tab 2: Komponen Stok Bahan Ajar -->
+                    <section v-if="currentTab === 'stok'" class="fade-in"><ba-stock-table></ba-stock-table></section>
+
+                    <!-- Tab 3: Komponen Tracking DO & Order Baru -->
+                    <section v-if="currentTab === 'tracking'" class="fade-in"><do-tracking></do-tracking></section>
+                </div>
+            </main>
+        </div>
+        <!-- Global Popup System Component (Alert & Delete Confirm) -->
+        <app-modal ref="modal"></app-modal>
+    </div>
+
+    <!-- Core Lib Vue Core -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <!-- Loader File Logika JS Komponen dengan Murni Template Backtick Inside -->
+    <script src="js/services/api.js"></script>
+    <script src="js/components/status-badge.js"></script>
+    <script src="js/components/app-modal.js"></script>
+    <script src="js/components/stock-table.js"></script>
+    <script src="js/components/do-tracking.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

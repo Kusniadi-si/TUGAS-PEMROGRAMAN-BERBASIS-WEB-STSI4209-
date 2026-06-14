@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | SITTA UT</title>
+    <!-- Font Awesome CDN Stabil -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <!-- File CSS Terpadu -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dash-body">
+
+    <!-- Navigasi Utama (Sidebar) -->
+    <aside class="dash-sidebar">
+        <header class="dash-sidebar-header">
+            <img src="assets/logo-ut.png" alt="Logo UT" class="dash-logo-ut">
+            <div class="dash-brand-title">SITTA UT</div>
+        </header>
+
+        <nav class="dash-menu-list">
+            <a href="dashboard.html" class="dash-menu-item dash-active-menu">
+                <i class="fa-solid fa-house"></i> Beranda
+            </a>
+            <a href="stok.html" class="dash-menu-item">
+                <i class="fa-solid fa-boxes-stacked"></i> Informasi Bahan Ajar
+            </a>
+            <a href="tracking.html" class="dash-menu-item">
+                <i class="fa-solid fa-truck-fast"></i> Tracking Pengiriman
+            </a>
+
+            <!-- Dropdown Kontrol Laporan -->
+            <button type="button" class="dash-drop-btn" onclick="dashToggleDrop()">
+                <i class="fa-solid fa-file-signature"></i> Laporan
+                <i class="fa-solid fa-chevron-down dash-arrow-icon" id="dash-arrow"></i>
+            </button>
+            <div id="dash-dropMenu" class="dash-dropdown-container">
+                <a href="#"><i class="fa-solid fa-circle-dot"></i> Monitoring DO</a>
+                <a href="#"><i class="fa-solid fa-circle-dot"></i> Rekapitulasi</a>
+            </div>
+
+            <a href="#" class="dash-menu-item">
+                <i class="fa-solid fa-clock-rotate-left"></i> Histori Transaksi Bahan Ajar
+            </a>
+        </nav>
+
+        <footer class="dash-logout-section">
+            <button type="button" onclick="logoutSitta()" class="dash-logout-btn" style="background: none; border: none; width: 100%; cursor: pointer; text-align: left;">
+                <i class="fa-solid fa-power-off"></i> Keluar
+            </button>
+        </footer>
+        <button type="button" id="dash-sidebar-toggle" class="dash-sidebar-slide-btn" onclick="dashToggleSidebar()">
+        <i class="fa-solid fa-angles-left" id="dash-toggle-icon"></i>
+    </button>
+    </aside>
+
+    <!-- Konten Utama Halaman -->
+    <main class="dash-main-content">
+        <header>
+            <span class="dash-main-title">Dashboard Aplikasi SITTA</span>
+        </header>
+
+        <section class="dash-welcome-box">
+            <div class="dash-welcome-text">
+                <h2 id="dash-greetText">Selamat Pagi,</h2>
+                <h1 id="dash-userName">Memuat...</h1>
+                <p id="dash-userLoc">Memuat Lokasi Kerja...</p>
+            </div>
+            <time class="dash-current-date" id="dash-dateNow" datetime="2026-05-12">Memuat Tanggal...</time>
+        </section>
+
+        <!-- Kisi Panel Pintasan Utama -->
+        <section class="dash-card-grid">
+            <a href="stok.html" class="dash-simple-card">
+                <div class="dash-card-symbol">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                </div>
+                <h3>Informasi Bahan Ajar</h3>
+                <p>Klik untuk mengelola dan memantau stok bahan ajar di wilayah operasional Anda.</p>
+            </a>
+            <a href="tracking.html" class="dash-simple-card">
+                <div class="dash-card-symbol">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <h3>Tracking Pengiriman</h3>
+                <p>Klik untuk melacak status distribusi paket pengiriman secara akurat dan real-time.</p>
+            </a>
+        </section>
+    </main>
+
+    <!-- Skrip Integrasi Basis Data dan Logika Sistem -->
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

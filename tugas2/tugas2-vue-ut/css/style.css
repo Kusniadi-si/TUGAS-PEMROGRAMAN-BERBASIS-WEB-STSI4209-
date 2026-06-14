@@ -1,0 +1,589 @@
+/* css/style.css - Bagian 1 */
+
+/* Pengaturan Variabel Warna Resmi UT & Variabel Status */
+:root {
+    --ut-blue-dark: #002D62;
+    --ut-blue-light: #004085;
+    --ut-yellow: #FFD700;
+    --ut-yellow-hover: #E6C200;
+    --ut-text-dark: #333333;
+    --ut-text-light: #666666;
+    --ut-bg-light: #F4F7F6;
+    --ut-white: #FFFFFF;
+
+    /* Warna Status Stok */
+    --status-aman: #28a745;
+    /* Hijau */
+    --status-menipis: #fd7e14;
+    /* Orange */
+    --status-kosong: #dc3545;
+    /* Merah */
+}
+
+/* Reset Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--ut-bg-light);
+    color: var(--ut-text-dark);
+    line-height: 1.6;
+}
+
+/* Kontainer Utama Aplikasi */
+.ut-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    min-height: calc(100vh - 240px);
+}
+
+/* Header Resmi UT */
+.ut-header {
+    background-color: var(--ut-blue-dark);
+    color: var(--ut-white);
+    padding: 15px 0;
+    border-bottom: 4px solid var(--ut-yellow);
+}
+
+.ut-header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.ut-logo-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.ut-logo {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
+.ut-title-section h1 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--ut-yellow);
+}
+
+.ut-title-section p {
+    font-size: 12px;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+.ut-academic-year {
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Navigasi Utama Navbar dengan Efek Tombol Berjarak Rapi */
+.ut-navbar {
+    background-color: var(--ut-blue-light);
+    padding: 10px 0;
+}
+
+.ut-nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 12px;
+}
+
+.nav-item {
+    color: var(--ut-white);
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background-color: var(--ut-yellow);
+    color: var(--ut-blue-dark);
+    font-weight: 600;
+}
+
+/* Banner Informasi Selamat Datang */
+.ut-welcome-banner {
+    background: linear-gradient(135deg, var(--ut-blue-dark), var(--ut-blue-light));
+    color: var(--ut-white);
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.ut-welcome-banner h2 {
+    color: var(--ut-yellow);
+    margin-bottom: 10px;
+}
+
+/* Tata Letak Grid Dashboard */
+.ut-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* css/style.css - Bagian 2 */
+
+/* Tampilan Kartu Dashboard Utama */
+.ut-card {
+    background-color: var(--ut-white);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-top: 4px solid var(--ut-blue-dark);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Memposisikan ikon/gambar ke tengah */
+.ut-card-icon {
+    font-size: 40px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+/* Memposisikan judul kartu ke tengah */
+.ut-card h3 {
+    color: var(--ut-blue-dark);
+    font-size: 18px;
+    text-align: center;
+}
+
+/* Teks deskripsi tetap rata kiri */
+.ut-card p {
+    font-size: 14px;
+    color: var(--ut-text-light);
+    flex-grow: 1;
+    text-align: left;
+}
+
+/* Mengubah semua tombol utama di dalam kartu agar seragam menggunakan warna Biru Tua UT */
+.ut-card .ut-btn {
+    display: block;
+    width: 100%;
+    background-color: var(--ut-blue-dark);
+    color: var(--ut-white);
+}
+
+.ut-card .ut-btn:hover {
+    background-color: var(--ut-blue-light);
+}
+
+/* Tombol Kustom Umum (Luar Kartu) */
+.ut-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.ut-btn-primary {
+    background-color: var(--ut-blue-dark);
+    color: var(--ut-white);
+}
+
+.ut-btn-primary:hover {
+    background-color: var(--ut-blue-light);
+}
+
+.ut-btn-secondary {
+    background-color: var(--ut-yellow);
+    color: var(--ut-blue-dark);
+}
+
+.ut-btn-secondary:hover {
+    background-color: var(--ut-yellow-hover);
+}
+
+/* Area Saringan & Pengurutan (Filter & Sort) */
+.ut-filter-box {
+    background-color: var(--ut-white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+    border-left: 4px solid var(--ut-yellow);
+}
+
+.ut-filter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    align-items: flex-end;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ut-blue-dark);
+}
+
+.form-control {
+    padding: 8px 12px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    width: 100%;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--ut-blue-light);
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+/* Komponen Tabel Data Responsif */
+.ut-table-responsive {
+    overflow-x: auto; /* Mengaktifkan scroll horizontal halus HANYA jika bentangan teks melebihi monitor */
+    background-color: var(--ut-white);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+.ut-table {
+    width: 100%;
+    border-collapse: collapse;
+    /* Mengembalikan ke sistem dinamis agar lebar kolom otomatis mengikuti teks terpanjang */
+    table-layout: auto; 
+    font-size: 13px;
+}
+
+/* Mengatur distribusi lebar tiap-tiap kolom secara spesifik (Total 100%) */
+.ut-table th:nth-child(1), .ut-table td:nth-child(1) { width: 9%; }   /* Kode Modul */
+.ut-table th:nth-child(2), .ut-table td:nth-child(2) { width: 17%; }  /* Judul Buku */
+.ut-table th:nth-child(3), .ut-table td:nth-child(3) { width: 8%; }   /* Kategori */
+.ut-table th:nth-child(4), .ut-table td:nth-child(4) { width: 8%; }   /* UT-Daerah */
+.ut-table th:nth-child(5), .ut-table td:nth-child(5) { width: 7%; }   /* Lokasi Rak */
+.ut-table th:nth-child(6), .ut-table td:nth-child(6) { width: 9%; }   /* Harga */
+.ut-table th:nth-child(7), .ut-table td:nth-child(7) { width: 7%; }   /* Sisa Stok */
+.ut-table th:nth-child(8), .ut-table td:nth-child(8) { width: 9%; }   /* Safety Stock */
+.ut-table th:nth-child(9), .ut-table td:nth-child(9) { width: 9%; }   /* Status Buku */
+.ut-table th:nth-child(10), .ut-table td:nth-child(10) { width: 10%; }/* Catatan Khusus */
+.ut-table th:nth-child(11), .ut-table td:nth-child(11) { width: 7%; } /* Aksi (Tombol Edit Stok) */
+
+.ut-table th {
+    background-color: var(--ut-blue-dark);
+    color: var(--ut-white);
+    /* Memberikan padding atas-bawah (12px) dan jarak kiri-kanan (20px) agar ada celah dengan kolom sebelah */
+    padding: 12px 20px; 
+    font-weight: 600;
+    text-align: center; /* Memposisikan seluruh Judul Kolom tepat di tengah */
+    white-space: nowrap; /* Mengunci Judul Kolom agar tetap 1 baris lurus */
+}
+
+/* Memposisikan teks header dan isi khusus kolom Stok, Safety, dan Status ke Tengah */
+.ut-table th:nth-child(7), .ut-table td:nth-child(7),
+.ut-table th:nth-child(8), .ut-table td:nth-child(8),
+.ut-table th:nth-child(9), .ut-table td:nth-child(9),
+.ut-table th:nth-child(11), .ut-table td:nth-child(11) {
+    text-align: center;
+}
+
+.ut-table td {
+    /* Menyelaraskan jarak kiri-kanan (20px) agar konsisten dengan jarak header di atasnya */
+    padding: 12px 20px; 
+    border-bottom: 1px solid #eeeeee;
+    vertical-align: middle;
+    /* Mengunci SELURUH isi teks data (termasuk judul buku dan catatan) agar lurus 1 baris tanpa patah */
+    white-space: nowrap; 
+}
+
+/* Menyelaraskan teks isi agar posisinya pas di tengah, mengikuti judul kolomnya */
+.ut-table td {
+    text-align: center; 
+}
+
+.ut-table td:nth-child(2),
+.ut-table td:nth-child(10) {
+    text-align: left;
+}
+
+
+/* Catatan HTML di kolom terakhir dikembalikan agar bisa patah baris normal jika panjang */
+.ut-table td:last-child {
+    white-space: normal;
+}
+
+.ut-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Lencana Status Buku & Logistik */
+.badge {
+    display: inline-block;
+    padding: 5px 15px;      
+    min-width: 85px; /* Mematok ukuran kotak minimal agar seragam */
+    border-radius: 4px; 
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;  
+    color: var(--ut-white);
+}
+
+.ut-table .ut-btn {
+    padding: 5px 12px;
+    font-size: 11px;
+    background-color: var(--ut-blue-light);
+    color: white;
+    border-radius: 4px;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.badge-aman {
+    background-color: var(--status-aman);
+}
+
+.badge-menipis {
+    background-color: var(--status-menipis);
+}
+
+.badge-kosong {
+    background-color: var(--status-kosong);
+}
+
+/* Formulir Entri Data & Validasi */
+.ut-form-section {
+    background-color: var(--ut-white);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.ut-form-section h3 {
+    margin-bottom: 15px;
+    color: var(--ut-blue-dark);
+    border-bottom: 2px solid #eeeeee;
+    padding-bottom: 8px;
+}
+
+.error-text {
+    color: var(--status-kosong);
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+/* Kotak Detail Isi Paket Modul (Tracking DO) */
+.packet-detail-box {
+    background-color: #f0f4f8;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 15px;
+    border-left: 4px solid var(--ut-blue-light);
+}
+
+.packet-detail-box ul {
+    padding-left: 20px;
+    font-size: 13px;
+}
+
+/* Alur Riwayat Log Perjalanan / Timeline (Tracking DO) */
+.tracking-timeline {
+    list-style: none;
+    position: relative;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.tracking-timeline::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    bottom: 5px;
+    width: 2px;
+    background: #cccccc;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -19px;
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--ut-blue-light);
+}
+
+.timeline-time {
+    font-size: 11px;
+    color: var(--ut-text-light);
+    display: block;
+}
+
+.timeline-desc {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Area Panduan Sistem */
+.ut-info-section {
+    background-color: #fffde7;
+    border: 1px solid #fff59d;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.ut-guide-list {
+    padding-left: 20px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* Footer Aplikasi */
+.ut-footer {
+    background-color: #222222;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+    border-top: 4px solid var(--ut-yellow);
+}
+
+.ut-footer-sub {
+    font-size: 12px;
+    color: #aaaaaa;
+    margin-top: 5px;
+}
+
+/* ==========================================================================
+   ATURAN RESPONSIF (MEDIA QUERIES) UNTUK SEMUA PERANGKAT
+   ========================================================================== */
+
+/* 1. Pengaturan untuk Layar Tablet / Laptop Kecil (Maksimal 992px) */
+@media screen and (max-width: 992px) {
+    .ut-header-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .ut-logo-section {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .ut-nav-container {
+        overflow-x: auto; /* Menu navbar bisa digeser horizontal jika layar kesempitan */
+        white-space: nowrap;
+        padding-bottom: 5px;
+    }
+    
+    .nav-item {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+}
+
+/* 2. Pengaturan khusus untuk Layar Smartphone / HP (Maksimal 576px) */
+@media screen and (max-width: 576px) {
+    .ut-container {
+        margin: 10px auto;
+        padding: 0 10px;
+    }
+
+    .ut-welcome-banner {
+        padding: 20px;
+    }
+
+    .ut-welcome-banner h2 {
+        font-size: 20px;
+    }
+
+    .ut-welcome-banner p {
+        font-size: 13px;
+    }
+
+    /* Mengubah grid saringan & form menjadi 1 kolom penuh di HP */
+    .ut-filter-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+    }
+
+    .ut-form-section {
+        padding: 15px;
+    }
+
+    .ut-form-section h3 {
+        font-size: 16px;
+    }
+
+    /* Penyesuaian tombol form agar pas di layar kecil */
+    .ut-form-section div[style*="text-align: right"] {
+        text-align: center !important;
+    }
+
+    .ut-btn {
+        width: 100%; /* Tombol otomatis penuh selebar layar HP */
+        padding: 12px 20px;
+    }
+    
+    /* Layout detail hasil pelacakan DO agar tidak berdempetan */
+    .ut-form-section h3[style*="display: flex"] {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .badge {
+        width: 100% !important; /* Lencana status mengikuti lebar container di HP */
+        max-width: 1200px;
+    }
+}

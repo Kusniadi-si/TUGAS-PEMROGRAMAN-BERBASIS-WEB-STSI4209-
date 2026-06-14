@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informasi Bahan Ajar | SITTA UT</title>
+    <!-- Font Awesome CDN Stabil -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <!-- File CSS Terpadu -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dash-body">
+
+    <!-- Navigasi Utama (Sidebar) -->
+    <aside class="dash-sidebar">
+        <header class="dash-sidebar-header">
+            <img src="assets/logo-ut.png" alt="Logo UT" class="dash-logo-ut">
+            <div class="dash-brand-title">SITTA UT</div>
+        </header>
+        <nav class="dash-menu-list">
+            <a href="dashboard.html" class="dash-menu-item"><i class="fa-solid fa-house"></i> Beranda</a>
+            <a href="stok.html" class="dash-menu-item dash-active-menu"><i class="fa-solid fa-boxes-stacked"></i> Informasi Bahan Ajar</a>
+            <a href="tracking.html" class="dash-menu-item"><i class="fa-solid fa-truck-fast"></i> Tracking Pengiriman</a>
+
+            <!-- Dropdown Kontrol Laporan -->
+            <button type="button" class="dash-drop-btn" onclick="dashToggleDrop()">
+                <i class="fa-solid fa-file-signature"></i> Laporan 
+                <i class="fa-solid fa-chevron-down dash-arrow-icon" id="dash-arrow"></i>
+            </button>
+            <div id="dash-dropMenu" class="dash-dropdown-container">
+                <a href="#"><i class="fa-solid fa-circle-dot"></i> Monitoring DO</a>
+                <a href="#"><i class="fa-solid fa-circle-dot"></i> Rekapitulasi</a>
+            </div>
+
+            <a href="#" class="dash-menu-item"><i class="fa-solid fa-clock-rotate-left"></i> Histori Transaksi Bahan Ajar</a>
+        </nav>
+        <footer class="dash-logout-section">
+            <button type="button" onclick="logoutSitta()" class="dash-logout-btn btn-clean-trigger">
+                <i class="fa-solid fa-power-off"></i> Keluar
+            </button>
+        </footer>
+        <button type="button" id="dash-sidebar-toggle" class="dash-sidebar-slide-btn" onclick="dashToggleSidebar()">
+        <i class="fa-solid fa-angles-left" id="dash-toggle-icon"></i>
+    </button>
+    </aside>
+
+    <!-- Konten Utama (Tabel Stok) -->
+    <main class="dash-main-content">
+        <header class="stok-header-action">
+            <h2>Daftar Stok</h2>
+            <button type="button" class="stok-btn-add-trigger" onclick="stokOpenAddModal()">+ Tambah Data</button>
+        </header>
+
+        <section class="stok-table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cover</th>
+                        <th>Lokasi</th>
+                        <th>Kode</th>
+                        <th>Nama Barang</th>
+                        <th>Jenis</th>
+                        <th>Edisi</th>
+                        <th>Stok</th>
+                    </tr>
+                </thead>
+                <tbody id="stok-table-body"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- MODAL FORM INPUT & EDIT -->
+    <aside class="stok-modal-overlay" id="stok-modal-form">
+        <div class="stok-modal-content">
+            <header class="stok-modal-header">
+                <button type="button" class="stok-back-nav-fa" onclick="stokCloseModal()"><i class="fa-solid fa-chevron-left"></i></button>
+                <h3 id="stok-modal-title-text">Informasi Bahan Ajar</h3>
+            </header>
+            
+            <form onsubmit="event.preventDefault();">
+                <input type="hidden" id="stok-form-idx">
+                <div class="stok-field-group"><label for="stok-in-lokasi">Kode Lokasi</label><input type="text" id="stok-in-lokasi"></div>
+                <div class="stok-field-group"><label for="stok-in-kode">Kode Barang</label><input type="text" id="stok-in-kode"></div>
+                <div class="stok-field-group"><label for="stok-in-nama">Nama Barang</label><input type="text" id="stok-in-nama"></div>
+                <div class="stok-field-group"><label for="stok-in-jenis">Jenis Barang</label><input type="text" id="stok-in-jenis"></div>
+                
+                <!-- Kombinasi Kolom Menggunakan Grid/Flex CSS Bersih -->
+                <div class="stok-field-row">
+                    <div class="stok-field-group col-half"><label for="stok-in-edisi">Edisi</label><input type="text" id="stok-in-edisi"></div>
+                    <div class="stok-field-group col-half"><label for="stok-in-stok">Stok</label><input type="number" id="stok-in-stok" min="0"></div>
+                </div>
+                <div class="stok-field-group"><label for="stok-in-cover">File Cover (img/)</label><input type="text" id="stok-in-cover"></div>
+
+                <div class="stok-modal-btn-group">
+                    <button type="button" id="stok-btn-save" class="stok-btn-modal stok-btn-modal-save" onclick="stokSaveData()">SIMPAN DATA</button>
+                    <button type="button" id="stok-btn-del" class="stok-btn-modal stok-btn-modal-delete" onclick="stokDeleteData()">HAPUS</button>
+                </div>
+            </form>
+        </div>
+    </aside>
+
+    <!-- MODAL NOTIFIKASI -->
+    <aside class="stok-alert-overlay" id="stok-alert-modal">
+        <div class="stok-alert-box">
+            <p id="stok-alert-msg"></p>
+            <button type="button" class="stok-btn-ok" onclick="stokCloseAlert()">OK</button>
+        </div>
+    </aside>
+
+    <!-- Skrip Integrasi Basis Data dan Logika Sistem -->
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | SITTA Universitas Terbuka</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="login-page">
+
+    <main class="login-card">
+        <header>
+            <img src="assets/logo-ut.png" alt="Logo UT" class="login-logo-ut" onerror="this.src='wikimedia.org'">
+            <h1 class="login-title-sitta">SITTA</h1>
+            <p class="login-subtitle-sitta">Sistem Informasi Tiras dan Transaksi Bahan Ajar</p>
+        </header>
+
+        <form id="login-form-auth">
+            <div class="login-input-group">
+                <i class="fa-solid fa-envelope login-input-icon"></i>
+                <input type="email" id="login-email" placeholder="Email" required autocomplete="username">
+            </div>
+
+            <div class="login-input-group">
+                <i class="fa-solid fa-key login-input-icon"></i>
+                <input type="password" id="login-password" placeholder="Password" required
+                    autocomplete="current-password">
+                <button type="button" id="login-toggle-password" class="login-eye-btn">
+                    <i class="fa-solid fa-eye-low-vision" id="login-eye-icon"></i>
+                </button>
+            </div>
+
+            <div class="login-action-row">
+                <button type="button" class="login-link-text" onclick="loginShowModal('Lupa Password?')">Lupa
+                    password?</button>
+            </div>
+
+            <button type="submit" class="login-btn-submit">Masuk</button>
+        </form>
+
+        <footer class="login-footer-text">
+            Belum memiliki akun? <button type="button" class="login-link-text"
+                onclick="loginShowModal('Pendaftaran Akun')">Daftar sekarang</button>
+        </footer>
+    </main>
+
+    <!-- Modal Alert & Informasi (Universal Container) -->
+    <aside id="login-info-modal" class="login-modal-overlay">
+        <div class="login-modal-content">
+            <h3 id="login-modal-title"></h3>
+            <p>Silakan hubungi Unit Program Belajar Jarak Jauh (UPBJJ) terdekat untuk bantuan lebih lanjut.</p>
+            <button type="button" onclick="loginCloseModal()" class="login-btn-ok">OK</button>
+        </div>
+    </aside>
+
+    <aside id="login-custom-alert" class="login-modal-overlay">
+        <div class="login-modal-content">
+            <div id="login-alert-icon" class="login-alert-icon"></div>
+            <h3 id="login-alert-title" class="login-alert-title"></h3>
+            <p id="login-alert-message" class="login-alert-message"></p>
+            <button type="button" id="login-alert-btn" class="login-btn-ok">OK</button>
+        </div>
+    </aside>
+
+    <!-- Sinkronisasi Data & Skrip Kontrol -->
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

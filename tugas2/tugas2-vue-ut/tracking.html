@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SITTA UT - Tracking Delivery Order (Vue 3)</title>
+    <!-- Menghubungkan berkas gaya tampilan CSS induk -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Mengambil pustaka font Poppins -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Memuat Library Core Vue 3 Global Build via CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- Header Resmi Universitas Terbuka -->
+        <header class="ut-header">
+            <div class="ut-header-container">
+                <div class="ut-logo-section">
+                    <img src="assets/logo-ut.png" alt="Logo Universitas Terbuka" class="ut-logo">
+                    <div class="ut-title-section">
+                        <h1>SITTA UT</h1>
+                        <p>Sistem Informasi Tiras dan Transaksi Bahan Ajar</p>
+                    </div>
+                </div>
+                <div class="ut-academic-year">
+                    <span>Tahun Akademik: 2025/2026</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigasi Menu Utama -->
+        <nav class="ut-navbar">
+            <div class="ut-nav-container">
+                <a href="index.html" class="nav-item">Beranda</a>
+                <a href="stok.html" class="nav-item">Stok Bahan Ajar</a>
+                <a href="tracking.html" class="nav-item active">Tracking Delivery Order</a>
+            </div>
+        </nav>
+
+        <!-- Konten Utama Aplikasi -->
+        <main class="ut-container">
+            <div class="ut-welcome-banner">
+                <h2>Pelacakan Distribusi & Delivery Order</h2>
+                <p>Pantau status pengiriman paket modul ajar cetak langsung ke alamat mahasiswa menggunakan NIM atau
+                    Nomor DO.</p>
+            </div>
+
+            <!-- Panel Pencarian / Filter Tracking -->
+            <section class="ut-filter-box">
+                <div class="ut-filter-grid" style="grid-template-columns: 1fr auto;">
+                    <div class="form-group">
+                        <label for="searchKey">Masukkan Nomor DO atau NIM Mahasiswa:</label>
+                        <input type="text" id="searchKey" class="form-control"
+                            placeholder="Contoh: DO2025-0001 atau 123456789" v-model="searchQuery"
+                            @keyup.enter="lacakDO">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="ut-btn ut-btn-primary" @click="lacakDO"
+                            style="padding: 10px 30px;">Cari Data</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hasil Pelacakan DO (Hanya muncul jika pencarian berhasil ditemukan) -->
+            <section class="ut-form-section" v-if="hasilLacak">
+                <h3 style="color: var(--ut-blue-dark); display: flex; justify-content: space-between;">
+                    <span>Detail Pengiriman: {{ hasilLacak.noDO }}</span>
+                    <span class="badge badge-aman">{{ hasilLacak.status }}</span>
+                </h3>
+
+                <div class="ut-filter-grid"
+                    style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-top: 15px;">
+                    <div><strong>NIM Mahasiswa:</strong>
+                        <p>{{ hasilLacak.nim }}</p>
+                    </div>
+                    <div><strong>Nama Lengkap:</strong>
+                        <p>{{ hasilLacak.nama }}</p>
+                    </div>
+                    <div><strong>Ekspedisi / Paket:</strong>
+                        <p>{{ hasilLacak.ekspedisi }}</p>
+                    </div>
+                    <div><strong>Tanggal Kirim:</strong>
+                        <p>{{ hasilLacak.tanggalKirim }}</p>
+                    </div>
+                    <div><strong>Total Transaksi:</strong>
+                        <p>Rp {{ hasilLacak.total.toLocaleString('id-ID') }}</p>
+                    </div>
+                </div>
+
+                <!-- Informasi Rincian Buku di Dalam Paket -->
+                <div class="packet-detail-box">
+                    <strong>Isi Komponen {{ hasilLacak.paketNama }}:</strong>
+                    <ul style="margin-top: 5px;">
+                        <li v-for="buku in hasilLacak.bukuDetail" :key="buku.kode">
+                            <strong>{{ buku.kode }}</strong> - {{ buku.judul }} (Rak: {{ buku.lokasiRak }})
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Log Perjalanan Paket (Timeline) -->
+                <div style="margin-top: 25px;">
+                    <h4 style="margin-bottom: 15px; color: var(--ut-blue-light);">Riwayat Perjalanan Ekspedisi</h4>
+                    <ul class="tracking-timeline">
+                        <li class="timeline-item" v-for="(log, idx) in hasilLacak.perjalanan" :key="idx">
+                            <span class="timeline-time">{{ log.waktu }}</span>
+                            <span class="timeline-desc">{{ log.keterangan }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Notifikasi Jika Data Tidak Ditemukan -->
+            <section class="ut-card" v-if="sudahMencari && !hasilLacak"
+                style="border-top-color: var(--status-kosong); margin-bottom: 25px; text-align: center;">
+                <p style="color: var(--status-kosong); font-weight: 500;">Maaf, data transaksi DO atau NIM tersebut
+                    tidak ditemukan dalam sistem database kami.</p>
+            </section>
+            <!-- Formulir Pendaftaran Registrasi DO Baru -->
+            <section class="ut-form-section" style="margin-top: 25px;">
+                <h3>Registrasi Order Pengiriman Baru (Form DO)</h3>
+                <form @submit.prevent="simpanDO">
+                    <div class="ut-filter-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+
+                        <!-- Input NIM Mahasiswa -->
+                        <div class="form-group">
+                            <label for="formNim">NIM Mahasiswa (9 Digit Angka): *</label>
+                            <input type="text" id="formNim" class="form-control" placeholder="Contoh: 123456789"
+                                v-model="formInput.nim">
+                            <span class="error-text" v-if="errors.nim">{{ errors.nim }}</span>
+                        </div>
+
+                        <!-- Input Nama Lengkap -->
+                        <div class="form-group">
+                            <label for="formNama">Nama Lengkap Mahasiswa: *</label>
+                            <input type="text" id="formNama" class="form-control" placeholder="Masukkan nama mahasiswa"
+                                v-model="formInput.nama">
+                            <span class="error-text" v-if="errors.nama">{{ errors.nama }}</span>
+                        </div>
+
+                        <!-- Pilihan Paket Bahan Ajar -->
+                        <div class="form-group">
+                            <label for="formPaket">Pilihan Paket Buku: *</label>
+                            <select id="formPaket" class="form-control" v-model="formInput.paketKode">
+                                <option value="">-- Pilih Paket Bahan Ajar --</option>
+                                <option v-for="p in paketList" :key="p.kode" :value="p.kode">
+                                    {{ p.nama }} (Rp {{ p.harga.toLocaleString('id-ID') }})
+                                </option>
+                            </select>
+                            <span class="error-text" v-if="errors.paketKode">{{ errors.paketKode }}</span>
+                        </div>
+
+                        <!-- Pilihan Layanan Ekspedisi Pengiriman -->
+                        <div class="form-group">
+                            <label for="formLayanan">Layanan Ekspedisi: *</label>
+                            <select id="formLayanan" class="form-control" v-model="formInput.ekspedisi">
+                                <option value="">-- Pilih Durasi Pengiriman --</option>
+                                <option v-for="l in pengirimanList" :key="l.kode" :value="l.nama">
+                                    {{ l.nama }}
+                                </option>
+                            </select>
+                            <span class="error-text" v-if="errors.ekspedisi">{{ errors.ekspedisi }}</span>
+                        </div>
+
+                        <!-- Input Tanggal Pengiriman -->
+                        <div class="form-group">
+                            <label for="formTanggal">Tanggal Pengiriman: *</label>
+                            <input type="date" id="formTanggal" class="form-control" v-model="formInput.tanggalKirim">
+                            <span class="error-text" v-if="errors.tanggalKirim">{{ errors.tanggalKirim }}</span>
+                        </div>
+
+                    </div>
+
+                    <!-- Tombol Kirim Form -->
+                    <div style="margin-top: 20px; text-align: right;">
+                        <button type="submit" class="ut-btn ut-btn-primary" style="padding: 12px 30px;">
+                            Daftarkan Pengiriman (DO)
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <!-- MODAL POP-UP SUKSES REGISTRASI DO KUSTOM (Verifikasi Teks Tombol Baru) -->
+        <div v-if="modeSuksesAktif" @click.self="tutupModalSukses"
+            style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 20px;">
+            <div class="ut-form-section"
+                style="width: 100%; max-width: 450px; margin-bottom: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.2); text-align: center; border-top: 4px solid var(--status-aman);">
+                <div style="font-size: 45px; margin-bottom: 10px;">✅</div>
+                <h3 style="margin-bottom: 10px; color: var(--status-aman);">Registrasi Berhasil!</h3>
+
+                <div
+                    style="margin-bottom: 20px; font-size: 14px; color: var(--ut-text-dark); background: #f4f7f6; padding: 15px; border-radius: 6px; text-align: left; display: flex; flex-direction: column; gap: 6px;">
+                    <p><strong>Nomor DO Baru:</strong> <code
+                            style="font-size: 14px; color: var(--ut-blue-dark);">{{ infoSukses.noDO }}</code></p>
+                    <p><strong>Nama Mahasiswa:</strong> {{ infoSukses.nama }}</p>
+                    <p><strong>Total Tagihan:</strong> Rp {{ infoSukses.total.toLocaleString('id-ID') }}</p>
+                </div>
+
+                <div style="text-align: center;">
+                    <!-- PERBAIKAN TEKS TOMBOL: Menjadi Tutup -->
+                    <button type="button" class="ut-btn ut-btn-primary" style="padding: 10px 30px; width: 100%;"
+                        @click="tutupModalSukses">
+                        Tutup
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Sistem -->
+        <footer class="ut-footer">
+            <div class="ut-footer-container">
+                <p>&copy; 2026 Universitas Terbuka. Seluruh Hak Cipta Dilindungi Undang-Undang.</p>
+                <p class="ut-footer-sub">Tugas Praktik 2 - Pemrograman Berbasis Web (STSI4209) - Vue 3 Framework</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- PANGGILAN SKRIP JANGAN TERBALIK -->
+    <!-- 1. Ambil konfig data bawaan soal -->
+    <script src="js/dataBahanAjar.js"></script>
+    <!-- 2. Hubungkan ke logika penggerak tracking Vue 3 -->
+    <script src="js/tracking-app.js"></script>
+</body>
+
+</html>
